@@ -25,4 +25,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=10s \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')" || exit 1
 
 # --preload: Tabellen werden einmal im Master angelegt, nicht von jedem Worker.
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--preload", "app:app"]
+# --no-control-socket: gunicorn >= 25.1 legt sonst einen Socket in $HOME/.gunicorn an;
+# der System-User hat kein beschreibbares Home (Errno 13) und der Socket wird im Container nicht gebraucht.
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--preload", "--no-control-socket", "app:app"]
