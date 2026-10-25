@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Health Tracker Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='vendor/chart.umd.js') }}"></script>
+</head>
+<body>
+    <header class="bg-info text-white text-center py-3 mb-4">
+        <h1>Health Tracker Dashboard</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('form') }}">Enter Health Data</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="bg-info text-white text-center py-3 mt-4">
+        <p class="mb-0">&copy; 2024 Health Tracker Dashboard</p>
+    </footer>
+</body>
+</html>

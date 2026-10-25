@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Enter Health Data{% endblock %}
+
+{% block content %}
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h2 class="card-title">Enter Your Health Data</h2>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                {% for field in [form.date, form.exercise, form.meditation, form.sleep] %}
+                <div class="mb-3">
+                    {{ field.label(class="form-label") }}
+                    {{ field(class="form-control") }}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {{ form.submit(class="btn btn-info w-100") }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
